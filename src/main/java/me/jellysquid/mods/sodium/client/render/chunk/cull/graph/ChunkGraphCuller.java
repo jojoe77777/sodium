@@ -24,7 +24,7 @@ public class ChunkGraphCuller implements ChunkCuller {
 
     private final ChunkGraphIterationQueue visible = new ChunkGraphIterationQueue();
     private final World world;
-    private final int renderDistance;
+    private int renderDistance;
 
     private FrustumExtended frustum;
     private boolean useOcclusionCulling;
@@ -34,6 +34,11 @@ public class ChunkGraphCuller implements ChunkCuller {
 
     public ChunkGraphCuller(World world, int renderDistance) {
         this.world = world;
+        this.renderDistance = renderDistance;
+    }
+
+    @Override
+    public void setRenderDistance(int renderDistance) {
         this.renderDistance = renderDistance;
     }
 

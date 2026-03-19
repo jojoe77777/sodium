@@ -478,6 +478,11 @@ public class ChunkRenderManager<T extends ChunkGraphicsState> implements ChunkSt
         return this.dirty;
     }
 
+    public void updateRenderDistance(int renderDistance) {
+        this.culler.setRenderDistance(renderDistance);
+        this.markDirty();
+    }
+
     public void restoreChunks(LongCollection chunks) {
         LongIterator it = chunks.iterator();
 

@@ -150,7 +150,7 @@ public class SodiumWorldRenderer implements ChunkStatusListener {
         this.useEntityCulling = SodiumClientMod.options().advanced.useEntityCulling;
 
         if (this.client.options.viewDistance != this.renderDistance) {
-            this.reload();
+            this.onRenderDistanceChanged();
         }
 
         Profiler profiler = this.client.getProfiler();
@@ -225,6 +225,14 @@ public class SodiumWorldRenderer implements ChunkStatusListener {
         }
 
         this.initRenderer();
+    }
+
+    private void onRenderDistanceChanged() {
+        this.renderDistance = this.client.options.viewDistance;
+
+        if (this.chunkRenderManager != null) {
+            this.chunkRenderManager.updateRenderDistance(this.renderDistance);
+        }
     }
 
     private void initRenderer() {
